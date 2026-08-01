@@ -1,0 +1,25 @@
+generated: '2026-07-20'
+method: searched
+source: https://developer.provablemarkets.com/changelog
+versioning:
+  scheme: semver
+  changelog: https://developer.provablemarkets.com/changelog
+  changelog_format: keep-a-changelog
+  path_version: /api/1/
+deprecation:
+  policy_url: null
+  sunset_header: false
+  note: >-
+    No formal deprecation/Sunset policy is published. The portal states message
+    structures are subject to change and some features may be pending delivery.
+sla:
+  url: https://provablemarkets.com/business-continuity-disclosure-statement
+  uptime_target: null
+status_page: null
+operating_hours:
+  timezone: America/New_York
+  system: 04:00-18:00 ET
+  order_entry_matching: 04:00-15:00 ET
+  contract_management: 04:00-18:00 ET
+  holidays: Closed on US holidays (follows DTCC settlement calendar)
+deprecated_operations: []

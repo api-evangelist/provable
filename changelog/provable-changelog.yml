@@ -1,0 +1,13 @@
+generated: '2026-07-20'
+method: searched
+source: https://developer.provablemarkets.com/changelog
+docs: https://developer.provablemarkets.com/changelog
+scheme: semver
+format: keep-a-changelog
+current_version: null
+entries: []
+note: >-
+  The Aurora developer portal publishes a changelog page following Keep a Changelog
+  + Semantic Versioning conventions, but no dated release entries were listed at
+  capture time (2026-07-20). Pointer retained so the surface is tracked for future
+  entries. Related: Aurora updated FIX specifications announced for Q1 2026 rollout.

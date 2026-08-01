@@ -1,0 +1,30 @@
+generated: '2026-07-20'
+method: searched
+source: https://developer.provablemarkets.com/.well-known/
+hosts:
+  - host: https://developer.provablemarkets.com
+    documents:
+      - path: /.well-known/oauth-authorization-server   # RFC 8414
+        status: 200
+        file: provable-oauth-authorization-server.json
+        note: >-
+          Redocly-hosted developer portal OAuth authorization server metadata,
+          fronting the portal's built-in MCP surface (issuer auth.cloud.redocly.com,
+          endpoints under /_mcp/). Grant types: authorization_code, refresh_token,
+          client_credentials; PKCE S256.
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/security.txt
+        status: 404
+  - host: https://provablemarkets.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404

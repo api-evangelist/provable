@@ -1,0 +1,12 @@
+generated: '2026-07-20'
+method: generated
+source: https://developer.provablemarkets.com/api/connectapi
+skills:
+  - file: provable-place-and-manage-order.md
+    name: Place and manage a securities-lending order on Aurora
+    api: https://developer.provablemarkets.com/api/connectapi
+    operations: [LoginWithApiCredentials, ListInstruments, CreateOrder, ModifyOrder, CancelOrder, GetOrder, ListOrders]
+  - file: provable-contract-lifecycle.md
+    name: Manage an Aurora securities-lending contract lifecycle
+    api: https://developer.provablemarkets.com/api/connectapi
+    operations: [ListContracts, GetContract, ReturnContract, RecallContract, ListExecutions, AckExecutions]

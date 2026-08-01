@@ -1,7 +1,28 @@
 aid: provable
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/provable.png
 name: Provable
-description: Provable is a company surfaced as a portfolio company of anthemis and added to the API Evangelist
-  network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+description: >-
+  Provable Markets is a New York and Amsterdam based financial technology firm
+  operating Aurora, the first new SEC-registered Alternative Trading System (ATS)
+  for securities finance in over a decade. Through Aurora Marketplace and Aurora
+  Trade Manager, Provable delivers front-, middle-, and back-office technology for
+  the securities lending market: automated trade matching, contract lifecycle
+  management (returns, recalls, marks, rate changes), and CCP connectivity via
+  NSCC. Its cloud-native platform exposes open APIs — a Connect/gRPC Aurora API,
+  FIX specifications, and WebSocket/webhook event streams — and it is a FINRA
+  member registered as an SEC ATS with SOC 2 and ISO 27001 certifications.
 url: https://raw.githubusercontent.com/api-evangelist/provable/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -11,12 +32,82 @@ x-tier: stub
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-20'
 tags:
 - Company
-apis: []
+- Securities Lending
+- Capital Markets
+- Fintech
+- Trading
+- Alternative Trading System
+- Post-Trade
+- gRPC
+- FIX
+apis:
+- name: Aurora API
+  description: >-
+    The Aurora Connect (Buf) API for the SEC-registered securities-finance ATS —
+    authentication, company/instrument reference, order management (OMS), venue
+    order book, contract requests, contract lifecycle (returns/recalls), executions,
+    agreements, and server-initiated event streams over gRPC, gRPC-Web, and
+    Connect-HTTP.
+  humanURL: https://developer.provablemarkets.com
+  baseURL: https://provablemarkets.com/api/1
+  properties:
+  - type: Documentation
+    url: https://developer.provablemarkets.com/workflows
+  - type: APIReference
+    url: https://developer.provablemarkets.com/api/connectapi
+  - type: GettingStarted
+    url: https://developer.provablemarkets.com/workflows
+common:
+- type: DomainSecurity
+  url: security/provable-domain-security.yml
+- type: DeveloperPortal
+  url: https://developer.provablemarkets.com
+- type: Documentation
+  url: https://developer.provablemarkets.com/workflows
+- type: APIReference
+  url: https://developer.provablemarkets.com/api/connectapi
+- type: Support
+  url: https://provablemarkets.com/contact
+- type: Blog
+  url: https://provablemarkets.com/news-insights
+- type: TermsOfService
+  url: https://provablemarkets.com/terms-conditions
+- type: PrivacyPolicy
+  url: https://provablemarkets.com/privacy-policy
+- type: Compliance
+  url: https://provablemarkets.com/
+- type: LLMsTxt
+  url: llms/provable-llms.txt
+- type: WellKnown
+  url: well-known/provable-well-known.yml
+- type: Authentication
+  url: authentication/provable-authentication.yml
+- type: Conventions
+  url: conventions/provable-conventions.yml
+- type: Webhooks
+  url: asyncapi/provable-events-webhooks.yml
+- type: MCPServer
+  url: mcp/provable-mcp.yml
+- type: Conformance
+  url: conformance/provable-conformance.yml
+- type: Lifecycle
+  url: lifecycle/provable-lifecycle.yml
+- type: ChangeLog
+  url: changelog/provable-changelog.yml
+- type: DataModel
+  url: data-model/provable-data-model.yml
+- type: AgentSkill
+  url: skills/_index.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+x-enrichment:
+  date: '2026-07-20'
+  status: enriched
+  artifacts_added: 15
+  pass: local-v1

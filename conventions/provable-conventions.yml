@@ -1,0 +1,55 @@
+generated: '2026-07-20'
+method: searched
+source: https://developer.provablemarkets.com/workflows
+docs: https://developer.provablemarkets.com/api/connectapi
+api_style:
+  protocol: connect
+  description: >-
+    The Aurora API is built on Connect (Buf), a family of libraries speaking three
+    interoperable protocols over HTTP/1.1, HTTP/2 and HTTP/3: full gRPC, gRPC-Web,
+    and Connect's own HTTP protocol. Operations are addressed as Service/Method
+    (e.g. OmsService/CreateOrder) rather than REST resource paths.
+  content_type: application/json  # (also application/grpc, application/grpc-web)
+authentication:
+  style: bearer-access-token
+  detail: See authentication/provable-authentication.yml
+  login_operation: LoginService/LoginWithApiCredentials
+  token_ttl: 1 week
+idempotency:
+  documented: false
+  note: No idempotency-key header/contract is documented in the public Aurora API reference.
+pagination:
+  documented: false
+  note: >-
+    List operations (ListOrders, ListContracts, ListExecutions, ListAgreements,
+    QueryContractRequests) accept filter parameters; a formal cursor/offset
+    pagination contract is not published in the public reference.
+error_envelope:
+  style: connect
+  detail: >-
+    Errors follow the Connect/gRPC error model (a code plus message), not RFC 9457
+    problem+json. See errors surfaced by the Connect runtime.
+event_delivery:
+  channels: [webhook, rpchooks, websocket]
+  guarantee: at-least-once
+  ordering: chronological
+  retry: exponential backoff; delivery halts on failed acknowledgment
+  websocket_endpoint: wss://provablemarkets.com/api/1/websocket/events
+  detail: See asyncapi/provable-events-webhooks.yml
+versioning:
+  scheme: semver
+  changelog: https://developer.provablemarkets.com/changelog
+  path_version: /api/1/           # observed on the websocket event endpoint
+  stability_note: >-
+    Portal states message structures are subject to change and some features may
+    be pending product delivery.
+operating_hours:
+  timezone: America/New_York
+  system: 04:00-18:00 ET
+  order_entry_matching: 04:00-15:00 ET
+  contract_management: 04:00-18:00 ET
+  holidays: Closed on US holidays (follows DTCC settlement calendar)
+cross_links:
+  authentication: authentication/provable-authentication.yml
+  lifecycle: lifecycle/provable-lifecycle.yml
+  events: asyncapi/provable-events-webhooks.yml

@@ -1,0 +1,14 @@
+{
+  "repo": "provable",
+  "feeds": [
+    {
+      "source": "https://provablemarkets.com/contact",
+      "feed_url": "https://provablemarkets.com/contact",
+      "title": "",
+      "saved": 0,
+      "method": "none"
+    }
+  ],
+  "post_count": 0,
+  "fetched": "2026-07-25T15:00:33Z"
+}

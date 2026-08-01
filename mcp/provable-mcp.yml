@@ -1,0 +1,75 @@
+generated: '2026-07-20'
+method: derived
+status: candidate
+source: https://developer.provablemarkets.com/api/connectapi
+notes:
+  - >-
+    Provable does not publish a hosted MCP server for the Aurora trading API. The
+    developer portal (Redocly) exposes an OAuth authorization-server document at
+    /.well-known/oauth-authorization-server referencing portal MCP endpoints under
+    /_mcp/ (docs-search MCP, OAuth-gated), which is distinct from the API below.
+  - Tools below are candidate mappings derived from documented Connect operations.
+portal_mcp:
+  oauth_metadata: https://developer.provablemarkets.com/.well-known/oauth-authorization-server
+  issuer: https://auth.cloud.redocly.com
+  authorization_endpoint: https://developer.provablemarkets.com/_mcp/oauth2/auth
+  scope: documentation-search
+  reachable_unauthenticated: false
+server:
+  name: provable-aurora
+  transport: http
+tools:
+  - name: login_with_api_credentials
+    description: Exchange API credentials for a bearer access token
+    source_operation: LoginService/LoginWithApiCredentials
+  - name: list_companies
+    description: Retrieve eligible companies
+    source_operation: CompanyService/ListCompanies
+  - name: list_instruments
+    description: List eligible securities for trading
+    source_operation: InstrumentService/ListInstruments
+  - name: create_order
+    description: Place a borrow/loan order
+    source_operation: OmsService/CreateOrder
+  - name: modify_order
+    description: Amend an open order
+    source_operation: OmsService/ModifyOrder
+  - name: cancel_order
+    description: Cancel an order
+    source_operation: OmsService/CancelOrder
+  - name: list_orders
+    description: Query open orders
+    source_operation: OmsService/ListOrders
+  - name: get_order
+    description: Retrieve a single order
+    source_operation: OmsService/GetOrder
+  - name: query_order_book_detailed
+    description: Snapshot of the current order book
+    source_operation: VenueService/QueryOrderBookDetailed
+  - name: list_contracts
+    description: Query contracts with filters
+    source_operation: ContractService/ListContracts
+  - name: get_contract
+    description: Retrieve detailed contract information
+    source_operation: ContractService/GetContract
+  - name: list_contract_history
+    description: View contract event history
+    source_operation: ContractService/ListContractHistory
+  - name: return_contract
+    description: Return borrowed shares
+    source_operation: ContractService/ReturnContract
+  - name: recall_contract
+    description: Initiate a lender recall
+    source_operation: ContractService/RecallContract
+  - name: submit_contract_request
+    description: Propose a manual contract
+    source_operation: ContractRequestService/SubmitContractRequest
+  - name: list_executions
+    description: Query executions
+    source_operation: ExecutionService/ListExecutions
+  - name: ack_executions
+    description: Acknowledge executions
+    source_operation: ExecutionService/AckExecutions
+  - name: list_agreements
+    description: Retrieve counterparty agreements
+    source_operation: AgreementService/ListAgreements

@@ -1,0 +1,74 @@
+generated: '2026-07-20'
+method: derived
+source: https://developer.provablemarkets.com/api/connectapi
+note: >-
+  Entity graph derived from the documented Aurora Connect services and their
+  lifecycle operations/events. No OpenAPI/proto schema is published publicly, so
+  field-level detail is not asserted; relationships reflect the securities-lending
+  domain the services model.
+entities:
+  - name: Company
+    service: CompanyService
+    description: Eligible counterparty / participant company
+  - name: Instrument
+    service: InstrumentService
+    description: Eligible security available to trade (borrow/loan)
+  - name: Order
+    service: OmsService
+    description: Borrow or loan order placed into the order book
+  - name: OrderBook
+    service: VenueService
+    description: Aggregated resting orders for an instrument on the venue
+  - name: ContractRequest
+    service: ContractRequestService
+    description: Proposed manual (bilateral) contract awaiting accept/decline
+  - name: Contract
+    service: ContractService
+    description: An executed/open securities-lending contract with full lifecycle (returns, recalls, rolls)
+  - name: Execution
+    service: ExecutionService
+    description: A match/fill event acknowledgable by the participant
+  - name: Agreement
+    service: AgreementService
+    description: Counterparty master/legal agreement governing trading
+relationships:
+  - from: Order
+    to: Instrument
+    type: belongs_to
+    via: instrument
+  - from: Order
+    to: Company
+    type: belongs_to
+    via: counterparty
+  - from: OrderBook
+    to: Instrument
+    type: belongs_to
+    via: instrument
+  - from: Execution
+    to: Order
+    type: belongs_to
+    via: order
+  - from: Contract
+    to: Execution
+    type: has_many
+    via: execution
+  - from: Contract
+    to: Instrument
+    type: belongs_to
+    via: instrument
+  - from: Contract
+    to: Company
+    type: belongs_to
+    via: counterparty
+  - from: ContractRequest
+    to: Contract
+    type: has_one
+    via: contract
+  - from: Contract
+    to: Agreement
+    type: belongs_to
+    via: agreement
+  - from: Agreement
+    to: Company
+    type: belongs_to
+    via: counterparty

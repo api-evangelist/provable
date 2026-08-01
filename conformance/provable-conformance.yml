@@ -1,0 +1,36 @@
+generated: '2026-07-20'
+method: searched
+source: https://provablemarkets.com/
+docs: https://developer.provablemarkets.com/api/connectapi
+standards:
+  - id: grpc
+    conforms: true
+    evidence: Aurora API implements full gRPC via the Connect framework
+  - id: connect-protocol
+    conforms: true
+    evidence: Connect (Buf) HTTP protocol supported alongside gRPC and gRPC-Web
+  - id: grpc-web
+    conforms: true
+    evidence: Connect exposes gRPC-Web for browser clients
+  - id: fix-protocol
+    conforms: true
+    evidence: Provable publishes FIX specifications for the Aurora Marketplace (first released 2022, updated for Marketplace product)
+  - id: websocket-rfc6455
+    conforms: true
+    evidence: Secure WebSocket event stream at wss://provablemarkets.com/api/1/websocket/events
+  - id: hmac-sha256-webhooks
+    conforms: true
+    evidence: Webhook payloads can be signed with HMAC SHA-256
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: Errors use the Connect/gRPC error model, not application/problem+json
+  - id: oauth2
+    conforms: false
+    evidence: Aurora API uses API-credential login + bearer token, not OAuth2 (portal MCP uses OAuth separately)
+compliance:
+  soc2: true
+  iso_27001: true
+  sec_ats_registered: true
+  finra_member: true
+  evidence:
+    - {source: 'https://provablemarkets.com/', keywords: ['SOC II', 'ISO 27001', 'SEC registered ATS', 'FINRA membership']}

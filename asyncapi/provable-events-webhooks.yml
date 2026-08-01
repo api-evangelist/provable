@@ -1,0 +1,73 @@
+generated: '2026-07-20'
+method: searched
+source: https://developer.provablemarkets.com/api/connectapi
+spec_type: Webhooks
+description: >-
+  Aurora delivers unsolicited (server-initiated) events for order, contract,
+  contract-request and execution lifecycle. The provider documents webhooks but
+  does not publish an AsyncAPI document, so this is the captured event catalog.
+delivery_methods:
+  - name: Webhook
+    transport: HTTP POST
+    content_type: application/json
+    auth: [basic, hmac-sha256, api-key-header]   # X-API-KEY
+    guarantee: at-least-once; exponential backoff; chronological; halts on failed ack
+  - name: RPCHooks
+    transport: HTTP/2 server-to-client RPC
+    auth: [basic, hmac-sha256, api-key-header]
+    guarantee: at-least-once; chronological
+  - name: WebSocket
+    endpoint: wss://provablemarkets.com/api/1/websocket/events
+    auth: bearer-api-key
+    extra_header: X-CONNECTION-CONFIG-ID
+subscription:
+  configured_via: ConfigurationService
+  note: Connection configurations manage which unsolicited events are subscribed.
+event_groups:
+  - service: ContractEventsService
+    events:
+      - ContractCreated
+      - ContractPending
+      - ContractMade
+      - ContractDropped
+      - ContractRejected
+      - ContractRollPending
+      - ContractRollExecuted
+      - ContractReturnExecuted
+      - ContractReturnPending
+      - ContractReturnPendingLenderApproval
+      - ContractReturnRejected
+      - ContractReturnFailed
+      - ContractReturnCancelAccepted
+      - ContractReturnCancelRejected
+      - ContractReturnDropped
+      - ContractReturnAcceptedByLender
+      - ContractReturnRejectedByLender
+      - ContractReturnCanceledByBorrower
+      - ContractRecallRejected
+      - ContractRecallOpened
+      - ContractRecallExecuted
+      - ContractRecallCanceled
+      - CancelContractAccepted
+      - CancelContractRejected
+  - service: ContractRequestEventsService
+    events:
+      - ContractRequestOpened
+      - ContractRequestAccepted
+      - ContractRequestDeclined
+      - ContractRequestCanceled
+  - service: OmsEventsService
+    events:
+      - OrderCreated
+      - OrderExecuted
+      - OrderExpired
+      - OrderModified
+      - OrderCanceled
+      - OrderClosed
+  - service: VenueEventsService
+    events:
+      - OrderAdded
+      - OrderRemoved
+  - service: ExecutionEventsService
+    events:
+      - Execution

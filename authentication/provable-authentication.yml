@@ -1,0 +1,38 @@
+generated: '2026-07-20'
+method: searched
+source: https://developer.provablemarkets.com/api/connectapi/loginservice/loginwithapicredentials
+docs: https://developer.provablemarkets.com/workflows
+summary:
+  api_style: grpc-connect            # Connect protocol (gRPC, gRPC-Web, Connect-HTTP)
+  types: [apiKey, http]
+  api_key_in: [header]
+  access_token_ttl: 1 week
+schemes:
+  - name: ApiCredentialsLogin
+    type: apiKey
+    description: >-
+      Clients authenticate by calling LoginService/LoginWithApiCredentials with
+      issued API credentials, which returns a bearer access token (TTL ~1 week)
+      used on subsequent Aurora API calls.
+    login_operation: LoginService/LoginWithApiCredentials
+    sources: [https://developer.provablemarkets.com/api/connectapi/loginservice/loginwithapicredentials]
+  - name: BearerAccessToken
+    type: http
+    scheme: bearer
+    description: Access token returned by the login service, presented as a bearer token on Connect API calls.
+    sources: [https://developer.provablemarkets.com/workflows]
+event_delivery_auth:
+  description: >-
+    Unsolicited event delivery (Webhook, RPCHooks, WebSocket) supports its own
+    authentication so Provable can authenticate to the customer endpoint / the
+    customer can authenticate the stream.
+  webhook: [basic, hmac-sha256, api-key-header]     # X-API-KEY
+  rpchooks: [basic, hmac-sha256, api-key-header]
+  websocket:
+    endpoint: wss://provablemarkets.com/api/1/websocket/events
+    auth: bearer-api-key
+    extra_header: X-CONNECTION-CONFIG-ID
+notes:
+  - No public OAuth2/OIDC flow is documented for the Aurora API itself; the
+    developer.provablemarkets.com/.well-known/oauth-authorization-server document
+    is the Redocly portal's own MCP OAuth surface, not the trading API's auth.
