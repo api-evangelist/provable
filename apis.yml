@@ -73,6 +73,8 @@ apis:
   - type: GettingStarted
     url: https://developer.provablemarkets.com/workflows
 common:
+- type: Website
+  url: https://www.provablemarkets.com/
 - type: DomainSecurity
   url: security/provable-domain-security.yml
 - type: DeveloperPortal
